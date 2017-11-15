@@ -1,0 +1,27 @@
+{
+  "name": "select-value-injector",
+  "version": "0.0.0",
+  "description": "injects values into html select tag text without parsing the html document",
+  "main": "select-value-injector.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EmergentIdeas/select-value-injector.git"
+  },
+  "keywords": [
+    "html",
+    "form",
+    "select",
+    "tag",
+    "set",
+    "inject"
+  ],
+  "author": "Dan Kolz (Emergent Ideas)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EmergentIdeas/select-value-injector/issues"
+  },
+  "homepage": "https://github.com/EmergentIdeas/select-value-injector#readme"
+}
