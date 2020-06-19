@@ -13,7 +13,12 @@ function fetchValue(obj, path) {
 			return eval(path)
 		}
 	}
-	catch(e) {}
+	catch(e) {
+		try {
+			return obj[path]
+		}
+		catch(ex) { }
+	}
 	return null
 }
 
