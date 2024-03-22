@@ -7,19 +7,21 @@ let selectPattern = /(<select[\w\W]*?select\w*>)/im
 let selectedAttrPattern = /\sselected(=["'](.*?)["'])?/i
 
 
-function fetchValue(obj, path) {
-	try {
-		with(obj) {
-			return eval(path)
-		}
-	}
-	catch(e) {
+let evalFunction = new Function('data',
+	`with (data.context) {
 		try {
-			return obj[path]
+			return eval(data.expression);
+		} catch (e) {
+			return null;
 		}
-		catch(ex) { }
-	}
-	return null
+	}`
+)
+
+function fetchValue(obj, path) {
+	return evalFunction.call(this, {
+		context: obj
+		, expression: path
+	})
 }
 
 function escForRegex(val) {
