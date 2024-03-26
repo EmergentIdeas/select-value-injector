@@ -1,3 +1,12 @@
+const {
+	evalFunction
+	, attributeEscapes
+	, fetchValue
+	, isOrContains
+	, escForRegex
+	, escapeAttributeValue
+} = require('value-injector-common')
+
 
 
 let nameAttrPattern = /\sname=["'](.*?)["']/i
@@ -5,42 +14,6 @@ let valAttrPattern = /\svalue=["'](.*?)["']/i
 let typeAttrPattern = /\stype=["'](.*?)["']/i
 let selectPattern = /(<select[\w\W]*?select\w*>)/im
 let selectedAttrPattern = /\sselected(=["'](.*?)["'])?/i
-
-
-let evalFunction = new Function('data',
-	`with (data.context) {
-		try {
-			return eval(data.expression);
-		} catch (e) {
-			return null;
-		}
-	}`
-)
-
-function fetchValue(obj, path) {
-	return evalFunction.call(this, {
-		context: obj
-		, expression: path
-	})
-}
-
-function escForRegex(val) {
-	if(val && val.replace) {
-		return val.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&")
-	}
-	else {
-		return val;
-	}
-}
-
-function isOrContains(target, possible) {
-	if(typeof possible == 'array') {
-		possible.includes(target)
-	}
-	else {
-		return target == possible
-	}
-}
 
 
 let injectValues = function(text, values) {
